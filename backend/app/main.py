@@ -153,7 +153,7 @@ def audit(db: Session, request_id: str, actor: Actor, action: str, payload: dict
 
 
 app = FastAPI(title="AsistenteDiligente API", version="0.1.0")
-origins = [x.strip() for x in os.getenv("CORS_ORIGINS", "http://localhost:5173,http://127.0.0.1:5173").split(",") if x.strip()]
+origins = [x.strip().rstrip("/") for x in os.getenv("CORS_ORIGINS", "http://localhost:5173,http://127.0.0.1:5173").split(",") if x.strip()]
 app.add_middleware(CORSMiddleware, allow_origins=origins, allow_credentials=False, allow_methods=["GET", "POST", "PATCH"], allow_headers=["Content-Type", "X-Demo-Role", "X-Demo-User"])
 
 
